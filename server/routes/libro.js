@@ -53,7 +53,7 @@ app.put('/libro/:id', function(req, res) {
     let id = req.params.id;
     let body = _.pick(req.body, ['titulo', 'descripcion', 'paginas', 'autor'])
 
-    Libros.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'quiery' }, (err, libroDB) => {
+    Libros.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'quiery' }, (err, librosDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -63,7 +63,7 @@ app.put('/libro/:id', function(req, res) {
         return res.json({
             ok: true,
             mensaje: `cambios Guardados con exito`,
-            libro: libroDB
+            libro: librosDB
         });
     });
 
