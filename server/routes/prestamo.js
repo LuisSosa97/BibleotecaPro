@@ -53,6 +53,20 @@ app.put('/prestamo/:id', function(req, res) {
     let id = req.params.id;
     let body = _.pick(req.body, ['usuario', 'libro', 'fechaPrestamo', 'fechaEntrega']);
 
+    Prestamo.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, prestamoDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: `Ocurrio un error al momento de actualizar ${err}`
+            });
+        }
+        return res.json({
+            ok: true,
+            mensaje: `cambios Guardados con exito`,
+            usuario: usrDB
+        });
+    });
+
 });
 app.delete('/prestamo/:id', function(req, res) {
     let id = req.params.id;
