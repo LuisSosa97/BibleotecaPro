@@ -5,7 +5,7 @@ process.env.PORT = process.env.PORT || 3000;
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 // FIRMA SECRETA DE JWT 
-process.env.FIRMA = process.env.FIRMA || 'firma-super-secreta';
+process.env.FIRMA = process.env.FIRMA || 'A9597206370*';
 
 // CONEXION A LA BASE DE DATOS 
 let urlDB;
