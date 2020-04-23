@@ -51,7 +51,21 @@ app.post('/libro', function(req, res) {
 });
 app.put('/libro/:id', function(req, res) {
     let id = req.params.id;
-    let body = _.pick(req.body, ['titulo', 'descripcion', 'paginas', 'autor']);
+    let body = _.pick(req.body, ['titulo', 'descripcion', 'paginas', 'autor'])
+
+    Libros.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'quiery' }, (err, libroDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: `ocurrio un error al momento de actualizar ${err}`
+            });
+        }
+        return res.json({
+            ok: true,
+            mensaje: `cambios Guardados con exito`,
+            libro: libroDB
+        });
+    });
 
 });
 
